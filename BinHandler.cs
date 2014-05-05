@@ -94,10 +94,10 @@ namespace PasTo {
 		public async Task getResponseUPB() {
 			HttpClient client = new HttpClient();
 			FormUrlEncodedContent requestContent = new FormUrlEncodedContent(new [] {
-			                                                                 	(new KeyValuePair<string, string>("content", paste.getContent())),
-			                                                                 	(new KeyValuePair<string, string>("poster", paste.getAuthor())),
-			                                                                 	(new KeyValuePair<string, string>("syntax", LanguageParse.getLangByIndex(paste.getSyntax(), Program.bin)))
-			                                                                 });
+			    (new KeyValuePair<string, string>("content", paste.getContent())),
+			    (new KeyValuePair<string, string>("poster", paste.getAuthor())),
+			    (new KeyValuePair<string, string>("syntax", LanguageParse.getLangByIndex(paste.getSyntax(), Program.bin)))
+			});
 			HttpResponseMessage response = await client.PostAsync("http://paste.ubuntu.com", requestContent);
 			response.EnsureSuccessStatusCode();
 			this.pasteURL = response.RequestMessage.RequestUri.ToString();
