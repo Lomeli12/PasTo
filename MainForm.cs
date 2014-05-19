@@ -130,8 +130,14 @@ namespace PasTo {
 					pasteBinOption.Checked = true;
 					updateLang(LanguageParse.pasteBinNames);
 					break;
-					default :
-						postName.Enabled = false;
+	           case 2:
+					postName.Enabled = true;
+					posterName.Enabled = false;
+					pasteeeOption.Checked = true;
+					updateLang(LanguageParse.pasteeeNames);
+					break;
+				default :
+					postName.Enabled = false;
 					posterName.Enabled = true;
 					ubuntuPasteBinOption.Checked = true;
 					updateConfig(0, LanguageParse.ubuntuNames);
@@ -159,7 +165,7 @@ namespace PasTo {
 		}
 		
 		void InfoBtnClick(object sender, EventArgs e){
-			MessageBox.Show("By Anthony Lomeli © 2014\nIcon by Iconleak and used\nunder thier Free License Agreement\nhttp://iconleak.com/");
+			MessageBox.Show("By Anthony Lomeli © 2014\nIcon by Iconleak and used\nunder their Free License Agreement\nhttp://iconleak.com/");
 		}
 		
 		void updateConfig(int i, string[] lang) {
@@ -183,7 +189,7 @@ namespace PasTo {
 				if (File.Exists("options.cfg"))
 					File.Delete("options.cfg");
 				StreamWriter writer = new StreamWriter("options.cfg");
-				writer.WriteLine("'Determines what bin is used. 0 = paste.ubuntu.com; 1 = pastebin.com");
+				writer.WriteLine("'Determines what bin is used. 0 = paste.ubuntu.com; 1 = pastebin.com; 2 = paste.ee");
 				writer.WriteLine("BinURL=" + Program.bin);
 				writer.Close();
 				
@@ -209,5 +215,13 @@ namespace PasTo {
 			this.Show();
 			this.WindowState = FormWindowState.Normal;
 		}
+    
+        void PasteeeOptionCheckedChanged(object sender, EventArgs e) {
+            int type = 2;
+			postName.Enabled = true;
+			posterName.Enabled = false;
+			if (Program.bin != type)
+				updateConfig(type, LanguageParse.pasteeeNames);
+        }
 	}
 }

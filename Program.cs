@@ -9,6 +9,7 @@ namespace PasTo {
 		public static int bin;
 		
 		public static string pasteBinAPIKey = "162d2cf151f52682fdca3db53f57feb4";
+		public static string pasteeAPIKey = "7222bac3cf4c71ac68f068bd1dcc64fe";
 		public static string userKey = "";
 		
 		[STAThread]
@@ -37,7 +38,7 @@ namespace PasTo {
 				reader.Close();
 			} else {
 				StreamWriter writer = new StreamWriter(configFile);
-				writer.WriteLine("'Determines what bin is used. 0 = paste.ubuntu.com; 1 = pastebin.com");
+				writer.WriteLine("'Determines what bin is used. 0 = paste.ubuntu.com; 1 = pastebin.com; 2 = paste.ee");
 				writer.WriteLine("BinURL=0");
 				writer.Close();
 			}
